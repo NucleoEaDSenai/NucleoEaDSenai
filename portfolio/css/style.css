@@ -1,0 +1,214 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BASE */
+body {
+  font-family: 'Trebuchet MS', sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* HEADER */
+.site-header {
+  width: 100%;
+  overflow: hidden;
+}
+
+.header-img {
+  display: block;      
+  width: 100%;         
+  height: auto;       
+  object-fit: cover;  
+  padding-bottom: 30px;
+}
+
+
+/* SEÇÕES DE CLIENTES */
+.client-section {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.client-name {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #0366d6;
+}
+
+/* GRID RESPONSIVO */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(246px, 1fr));
+  gap: 1rem;
+  justify-content: center;
+  margin: 0 auto;
+  justify-items: center;
+  padding: 20px 10px;
+}
+
+/* CARD */
+.card {
+  width: 246px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* MINIATURA */
+.card-thumb {
+  width: 246px;
+  height: 148px;
+  overflow: hidden;
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s;
+}
+.card-thumb:hover img {
+  transform: scale(1.1);
+}
+
+/* CONTEÚDO DO CARD */
+.card-content {
+  width: 246px;
+  height: 212px;
+  padding: 1rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.card-content h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #0366d6;
+}
+.card-content p {
+  font-size: 0.9rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+@media (max-width: 520px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* contêiner da miniatura */
+.thumb {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;   /* deixa o elemento quadrado */
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+
+/* a imagem preenche o quadrado */
+.thumb img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s;
+}
+
+/* hover mantém zoom */
+.thumb:hover img {
+  transform: scale(1.1);
+}
+.thumb:hover {
+  transform: translateY(-5px);
+}
+
+.site-footer {
+  background: #00A3DD;
+  padding: 50px 0;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 15px; /* evita que o conteúdo encoste nas bordas */
+}
+
+.footer-text {
+  margin: 0;
+  font-size: 13px;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0 30px 0 0;
+}
+
+.footer-logo {
+  flex: 0 0 auto;       /* não estica nem encolhe */
+  display: block;
+  width: 100%;           /* ocupa até o máximo definido abaixo */
+  max-width: 120px;      /* controla o tamanho máximo */
+  height: auto;          /* mantém proporção original */
+  object-fit: contain;   /* garante que a imagem não distorça */
+}
+
+/* Mobile first: empilha verticalmente em telas pequenas */
+@media (max-width: 480px) {
+  .footer-container {
+    flex-direction: column;
+  }
+  .footer-text {
+    margin-bottom: 12px;
+  }
+  .footer-logo {
+    max-width: 80px;     /* reduz um pouco a logo no mobile */
+  }
+}
+
+
+/* Quebrar para coluna em telas pequenas */
+@media (max-width: 600px) {
+  .footer-container {
+    flex-direction: column;
+  }
+  .footer-text {
+    order: 1;
+  }
+  .footer-logo {
+    order: 2;
+    margin-top: 10px;
+  }
+}
+
+
+
+/* RESPONSIVIDADE EXTRA */
+@media (max-width: 600px) {
+  .site-header h1 {
+    font-size: 2rem;
+  }
+  .site-header .subtitle {
+    font-size: 1rem;
+  }
+  .client-name {
+    font-size: 1.5rem;
+  }
+}
