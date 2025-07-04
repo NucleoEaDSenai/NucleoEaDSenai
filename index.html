@@ -117,7 +117,7 @@
   </div>
 </footer>
 
-<!-- Vídeo pop-up -->
+<!-- Vídeo Pop-up -->
 <div id="videoPopup" class="video-popup">
   <div class="video-popup-content">
     <button class="video-close">&times;</button>
@@ -126,31 +126,41 @@
 </div>
 
 <script>
-  // Abre o pop-up ao clicar em qualquer miniatura/link de vídeo
+  // Seleciona todos os links dentro de .card-thumb
   document.querySelectorAll('.card-thumb a').forEach(link => {
     link.addEventListener('click', e => {
-      e.preventDefault();
-      const src = link.getAttribute('href');
+      const href = link.getAttribute('href');
+      // só intercepta .mp4 (opcional, mas evita interferir em links normais)
+      if (!href.endsWith('.mp4')) return;
+      
+      e.preventDefault();               // bloqueia abertura de nova aba
       const popup = document.getElementById('videoPopup');
       const video = document.getElementById('popupVideo');
-      video.src = src;
-      popup.style.display = 'block';
+
+      video.src = href;                 // carrega o vídeo
+      popup.style.display = 'block';    // mostra o pop-up
       video.play();
     });
   });
-  // Fecha o pop-up
+
+  // Fecha ao clicar no "×"
   document.querySelector('.video-close').addEventListener('click', () => {
     const popup = document.getElementById('videoPopup');
     const video = document.getElementById('popupVideo');
+
     video.pause();
-    video.src = '';
+    video.src = '';                    // limpa para interromper download
     popup.style.display = 'none';
   });
-  // (Opcional) Fecha ao clicar fora do vídeo
+
+  // Fecha ao clicar fora da área de conteúdo
   document.getElementById('videoPopup').addEventListener('click', e => {
-    if (e.target === e.currentTarget) document.querySelector('.video-close').click();
+    if (e.target === e.currentTarget) {
+      document.querySelector('.video-close').click();
+    }
   });
 </script>
+
 
 </body>
 </html>

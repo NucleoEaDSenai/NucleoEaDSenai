@@ -26,12 +26,11 @@ body {
   padding-bottom: 30px;
 }
 
-/* overlay escuro e centralização */
+/* Overlay centralizado e compacto */
 .video-popup {
-  display: none;
+  display: none;                  /* escondido por padrão */
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0,0,0,0.8);
   padding: 8px;
@@ -41,20 +40,21 @@ body {
   width: 90%;
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
 }
+
+/* Conteúdo do pop-up (para posicionar o botão) */
 .video-popup-content {
   position: relative;
 }
-/* botão de fechar */
+
+/* Botão de fechar */
 .video-close {
   position: absolute;
-  top: -10px;
-  right: -10px;
+  top: -10px; right: -10px;
   background: #fff;
   border: none;
   font-size: 1.2rem;
   line-height: 1;
-  width: 30px;
-  height: 30px;
+  width: 30px; height: 30px;
   border-radius: 50%;
   cursor: pointer;
 }
