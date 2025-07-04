@@ -206,8 +206,8 @@ body {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 0 15px; /* evita que o conteúdo encoste nas bordas */
+  gap: 10px;
+  padding: 0 5px; /* evita que o conteúdo encoste nas bordas */
 }
 
 .footer-text {
