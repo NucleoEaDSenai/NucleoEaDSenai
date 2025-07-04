@@ -21,21 +21,18 @@
   <section class="client-section">
      <div class="portfolio-grid">
   <div class="card">
-   <div class="card-thumb">
-  <video
-    controls
-    preload="none"
-    poster="img/curso1.jpg"
-    style="width:100%; max-width: 360px; cursor: pointer;"
-  >
-    <source src="cursos-rise/onepage2.mp4" type="video/mp4">
-    Seu navegador não suporta o elemento <code>video</code>.
-  </video>
+   <div class="card">
+  <div class="card-thumb">
+    <a href="cursos-rise/onepage2.mp4">
+      <img src="img/curso1.jpg" alt="Curso Exemplo">
+    </a>
+  </div>
+  <div class="card-content">
+    <h3>One Page</h3>
+    <p>Clique e veja a One Page que é .... e pode impactar .... .... </p>
+  </div>
 </div>
-    <div class="card-content">
-      <h3>One Page</h3>
-      <p>Clique e veja a One Page que é .... e pode impactar .... .... </p>
-    </div>
+
   </div>
  <div class="card">
     <div class="card-thumb">
@@ -43,8 +40,7 @@
     </div>
     <div class="card-content">
       <h3>Curso TI</h3>
-      <p>Este curso foi desenvolvido para você, empregado da Petrobras, que possui envolvimento direto ou indireto 
-        com atividades de movimentação de cargas, conhecer o guindaste offshore.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec convallis est, quis varius lorem. Curabitur eu velit accumsan lacus iaculis ullamcorper in eget metus. </p>
     </div>
   </div>
   <div class="card">
@@ -127,38 +123,35 @@
 
 <script>
   // Seleciona todos os links dentro de .card-thumb
-  document.querySelectorAll('.card-thumb a').forEach(link => {
-    link.addEventListener('click', e => {
-      const href = link.getAttribute('href');
-      // só intercepta .mp4 (opcional, mas evita interferir em links normais)
-      if (!href.endsWith('.mp4')) return;
-      
-      e.preventDefault();               // bloqueia abertura de nova aba
-      const popup = document.getElementById('videoPopup');
-      const video = document.getElementById('popupVideo');
+  const popup = document.getElementById('videoPopup');
+const video = document.getElementById('popupVideo');
+const closeBtn = document.querySelector('.video-close');
 
-      video.src = href;                 // carrega o vídeo
-      popup.style.display = 'block';    // mostra o pop-up
-      video.play();
-    });
+// abrir
+document.querySelectorAll('.card-thumb a').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+    if (!href.endsWith('.mp4')) return;
+    e.preventDefault();
+
+    video.src = href;
+    popup.classList.add('visible');  // dispara a animação
+    video.play();
   });
+});
 
-  // Fecha ao clicar no "×"
-  document.querySelector('.video-close').addEventListener('click', () => {
-    const popup = document.getElementById('videoPopup');
-    const video = document.getElementById('popupVideo');
+// fechar
+closeBtn.addEventListener('click', () => {
+  popup.classList.remove('visible');
+  video.pause();
+  video.src = '';
+});
 
-    video.pause();
-    video.src = '';                    // limpa para interromper download
-    popup.style.display = 'none';
-  });
+// clicar fora fecha também
+popup.addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeBtn.click();
+});
 
-  // Fecha ao clicar fora da área de conteúdo
-  document.getElementById('videoPopup').addEventListener('click', e => {
-    if (e.target === e.currentTarget) {
-      document.querySelector('.video-close').click();
-    }
-  });
 </script>
 
 
