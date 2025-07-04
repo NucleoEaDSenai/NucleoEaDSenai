@@ -21,9 +21,17 @@
   <section class="client-section">
      <div class="portfolio-grid">
   <div class="card">
-    <div class="card-thumb">
-     <a href="cursos-rise/onepage2.mp4"> <img src="img/curso1.jpg" alt="Curso Exemplo"></a>
-    </div>
+   <div class="card-thumb">
+  <video
+    controls
+    preload="none"
+    poster="img/curso1.jpg"
+    style="width:100%; max-width: 360px; cursor: pointer;"
+  >
+    <source src="cursos-rise/onepage2.mp4" type="video/mp4">
+    Seu navegador não suporta o elemento <code>video</code>.
+  </video>
+</div>
     <div class="card-content">
       <h3>One Page</h3>
       <p>Clique e veja a One Page que é .... e pode impactar .... .... </p>
@@ -108,6 +116,25 @@
     <img class="footer-logo" src="img/logo.png" alt="Logo Núcleo EAD SENAI Maracanã">
   </div>
 </footer>
+
+<script>
+  document.querySelectorAll('.card-thumb video').forEach(video => {
+    // começa escondido e mostra ao clicar na poster
+    video.style.display = 'none';
+    const poster = video.getAttribute('poster');
+    video.insertAdjacentHTML('beforebegin',
+      `<img src="${poster}" style="width:100%; max-width:360px; cursor:pointer;" class="video-poster">`
+    );
+
+    const img = video.previousElementSibling;
+    img.addEventListener('click', () => {
+      img.remove();             // retira a imagem
+      video.style.display = ''; // mostra o vídeo
+      video.play();             // já toca
+    });
+  });
+</script>
+
 
 </body>
 </html>
