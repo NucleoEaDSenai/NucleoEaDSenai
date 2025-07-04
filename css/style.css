@@ -26,8 +26,8 @@ body {
   padding-bottom: 30px;
 }
 
+/* Pop-up fluído */
 .video-popup {
-  /* sem display:none; deixamos sempre no DOM */
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(0.8);
@@ -38,23 +38,40 @@ body {
   padding: 8px;
   border-radius: 8px;
   z-index: 1000;
-  max-width: 1000px;
-  width: 100%;
+  
+  /* largura e altura adaptam à viewport */
+  width: 90vw;       /* 90% da largura da tela */
+  max-width: 1000px;  /* opcional: limite em desktop */
+  max-height: 80vh;  /* até 80% da altura da tela */
+  
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
-
-  /* transições */
-  transition: 
-    opacity 0.3s ease, 
-    transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-/* Classe que “ativa” o pop-up */
 .video-popup.visible {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
 }
+
+/* Faz o <video> ocupar todo o container mantendo proporção */
+.video-popup-content video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;  /* suporte moderno para manter proporção vídeo */
+}
+
+/* Botão de fechar continua igual */
+.video-close { /* … */ }
+
+/* (Opcional) Ajuste extra em telas muito pequenas */
+@media (max-width: 400px) {
+  .video-popup {
+    width: 95vw;       /* ocupar quase toda a largura no mobile muito estreito */
+    max-height: 70vh;
+  }
+}
+
 
 
 .video-popup-content video {
