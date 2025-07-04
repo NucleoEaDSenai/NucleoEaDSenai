@@ -117,24 +117,40 @@
   </div>
 </footer>
 
-<script>
-  document.querySelectorAll('.card-thumb video').forEach(video => {
-    // começa escondido e mostra ao clicar na poster
-    video.style.display = 'none';
-    const poster = video.getAttribute('poster');
-    video.insertAdjacentHTML('beforebegin',
-      `<img src="${poster}" style="width:100%; max-width:360px; cursor:pointer;" class="video-poster">`
-    );
+<!-- Vídeo pop-up -->
+<div id="videoPopup" class="video-popup">
+  <div class="video-popup-content">
+    <button class="video-close">&times;</button>
+    <video id="popupVideo" controls preload="metadata" style="width:100%;"></video>
+  </div>
+</div>
 
-    const img = video.previousElementSibling;
-    img.addEventListener('click', () => {
-      img.remove();             // retira a imagem
-      video.style.display = ''; // mostra o vídeo
-      video.play();             // já toca
+<script>
+  // Abre o pop-up ao clicar em qualquer miniatura/link de vídeo
+  document.querySelectorAll('.card-thumb a').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const src = link.getAttribute('href');
+      const popup = document.getElementById('videoPopup');
+      const video = document.getElementById('popupVideo');
+      video.src = src;
+      popup.style.display = 'block';
+      video.play();
     });
   });
+  // Fecha o pop-up
+  document.querySelector('.video-close').addEventListener('click', () => {
+    const popup = document.getElementById('videoPopup');
+    const video = document.getElementById('popupVideo');
+    video.pause();
+    video.src = '';
+    popup.style.display = 'none';
+  });
+  // (Opcional) Fecha ao clicar fora do vídeo
+  document.getElementById('videoPopup').addEventListener('click', e => {
+    if (e.target === e.currentTarget) document.querySelector('.video-close').click();
+  });
 </script>
-
 
 </body>
 </html>
