@@ -5,14 +5,12 @@
   box-sizing: border-box;
 }
 
-/* BASE */
 body {
   font-family: 'Trebuchet MS', sans-serif;
   color: #333;
   line-height: 1.5;
 }
 
-/* HEADER */
 .site-header {
   width: 100%;
   overflow: hidden;
@@ -26,7 +24,6 @@ body {
   padding-bottom: 30px;
 }
 
-/* Pop-up fluído */
 .video-popup {
   position: fixed;
   top: 50%; left: 50%;
@@ -39,10 +36,9 @@ body {
   border-radius: 8px;
   z-index: 1000;
   
-  /* largura e altura adaptam à viewport */
-  width: 90vw;       /* 90% da largura da tela */
-  max-width: 1000px;  /* opcional: limite em desktop */
-  max-height: 80vh;  /* até 80% da altura da tela */
+  width: 90vw;    
+  max-width: 1000px; 
+  max-height: 80vh; 
   
   box-shadow: 0 0 15px rgba(0,0,0,0.5);
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -54,34 +50,24 @@ body {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Faz o <video> ocupar todo o container mantendo proporção */
 .video-popup-content video {
   width: 100%;
   height: auto;
-  aspect-ratio: 16/9;  /* suporte moderno para manter proporção vídeo */
+  aspect-ratio: 16/9; 
 }
 
-/* Botão de fechar continua igual */
-.video-close { /* … */ }
-
-/* (Opcional) Ajuste extra em telas muito pequenas */
 @media (max-width: 400px) {
   .video-popup {
-    width: 95vw;       /* ocupar quase toda a largura no mobile muito estreito */
+    width: 95vw;     
     max-height: 70vh;
   }
 }
 
-
-
 .video-popup-content video {
-  /* se quiser garantir altura proporcional */
   width: 100%;
   height: auto;
 }
 
-
-/* Botão de fechar */
 .video-close {
   position: absolute;
   top: -10px; right: -10px;
@@ -89,10 +75,12 @@ body {
   border: none;
   font-size: 1.2rem;
   line-height: 1;
-  width: 30px; height: 30px;
+  width: 20px; height: 20px;
   border-radius: 50%;
   cursor: pointer;
 }
+
+
 
 
 /* SEÇÕES DE CLIENTES */
@@ -134,7 +122,7 @@ body {
 /* MINIATURA */
 .card-thumb {
   width: 246px;
-  height: 148px;
+  height: 128px;
   overflow: hidden;
 }
 .card-thumb img {
@@ -148,10 +136,11 @@ body {
   transform: scale(1.1);
 }
 
+
 /* CONTEÚDO DO CARD */
 .card-content {
   width: 246px;
-  height: 212px;
+  height: 200px;
   padding: 1rem;
   background: #fff;
   display: flex;
@@ -161,7 +150,7 @@ body {
 .card-content h3 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  color: #0366d6;
+  color: #00A3DD;
 }
 .card-content p {
   font-size: 0.9rem;
@@ -279,4 +268,34 @@ body {
   .client-name {
     font-size: 1.5rem;
   }
+}
+
+
+/* triângulo “play” */
+
+.card-thumb a {
+  position: relative;      
+  display: inline-block;  
+}
+
+.card-thumb a::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px; height: 50px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.card-thumb a::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 10px 0 10px 16px;
+  border-color: transparent transparent transparent #fff;
+  z-index: 2;
 }
